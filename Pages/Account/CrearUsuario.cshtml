@@ -1,4 +1,61 @@
 ﻿@page
-@model RostrosFelices.Pages.Account.CrearUsuarioModel
+@model CreateUsuarioModel
 @{
+    ViewData["Title"] = "Crear Usuario";
+}
+
+<h1>Crear Usuario</h1>
+
+@if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@rostrosfelices.com.co")
+{
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Usuario.NombreCompleto" class="control-label"></label>
+                    <input asp-for="Usuario.NombreCompleto" class="form-control" />
+                    <span asp-validation-for="Usuario.NombreCompleto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Usuario.Contraseña" class="control-label"></label>
+                    <input asp-for="Usuario.Contraseña" class="form-control" />
+                    <span asp-validation-for="Usuario.Contraseña" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Usuario.ConfirmarContraseña" class="control-label"></label>
+                    <input asp-for="Usuario.ConfirmarContraseña" class="form-control" />
+                    <span asp-validation-for="Usuario.ConfirmarContraseña" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Usuario.TipoSangre" class="control-label"></label>
+                    <input asp-for="Usuario.TipoSangre" class="form-control" />
+                    <span asp-validation-for="Usuario.TipoSangre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Usuario.CedulaCiudadania" class="control-label"></label>
+                    <input asp-for="Usuario.CedulaCiudadania" class="form-control" />
+                    <span asp-validation-for="Usuario.CedulaCiudadania" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Usuario.NumeroTelefonico" class="control-label"></label>
+                    <input asp-for="Usuario.NumeroTelefonico" class="form-control" />
+                    <span asp-validation-for="Usuario.NumeroTelefonico" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Usuario.CorreoElectronico" class="control-label"></label>
+                    <input asp-for="Usuario.CorreoElectronico" class="form-control" />
+                    <span asp-validation-for="Usuario.CorreoElectronico" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-primary" />
+                    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <p>No tienes permisos para acceder a esta página.</p>
 }

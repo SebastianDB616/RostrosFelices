@@ -23,10 +23,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Cliente/Index">Clientes</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Clientes/Index">Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Servicio/Index">Servicios</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Servicios/Index">Servicios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/HistorialServicios/Index">Historial de Servicios</a>
@@ -34,20 +34,31 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                        <ul class="navbar-nav">
-                            @if (!User.Identity.IsAuthenticated)
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/Account/Login">Iniciar sesión</a>
-                                </li>
-                            }
-                            @if (User.Identity.Name == "admin" && User.Identity.IsAuthenticated)
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/Usuarios/CrearUsuario">Crear Usuario</a>
-                                </li>
-                            }
-                        </ul>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item ml-auto">
+                                <form id="logoutForm" asp-page="/Account/Logout" method="post">
+                                    <button type="submit" class="nav-link btn btn-link text-dark logout-btn">Cerrar Sesión</button>
+                                </form>
+                            </li>
+                        }
+
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Login">Iniciar sesión</a>
+                            </li>
+                        }
+
+                        @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@rostrosfelices.com.co")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Account/CreateUsuario">Crear Usuario</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
