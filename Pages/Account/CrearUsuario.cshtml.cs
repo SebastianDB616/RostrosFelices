@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RostrosFelices.Data;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RostrosFelices.Pages.Account
 {
+    [Authorize]
     public class CreateUsuarioModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -34,6 +36,8 @@ namespace RostrosFelices.Pages.Account
             {
                 return Page();
             }
+
+            // Crear el usuario en la base de datos
 
             _context.Usuarios.Add(Usuario);
             await _context.SaveChangesAsync();

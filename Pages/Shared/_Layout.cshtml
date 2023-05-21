@@ -39,24 +39,22 @@
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item ml-auto">
+                            @if (User.Claims.FirstOrDefault(c => c.Type == "email")?.Value == "admin@rostrosfelices.com.co")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Account/CreateUsuario">Crear Usuario</a>
+                                </li>
+                            }
+                            <li class="nav-item">
                                 <form id="logoutForm" asp-page="/Account/Logout" method="post">
                                     <button type="submit" class="nav-link btn btn-link text-dark logout-btn">Cerrar Sesión</button>
                                 </form>
                             </li>
                         }
-
-                        @if (!User.Identity.IsAuthenticated)
+                        else
                         {
                             <li class="nav-item">
                                 <a class="nav-link" href="/Account/Login">Iniciar sesión</a>
-                            </li>
-                        }
-
-                        @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin@rostrosfelices.com.co")
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Account/CreateUsuario">Crear Usuario</a>
                             </li>
                         }
                     </ul>
@@ -72,14 +70,21 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - RostrosFelices - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2023 - RostrosFelices (Realizado por: Sebastián Dorado Botero - S4AN)
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span>- @User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value</span>
+            }
+            else
+            {
+                <span>- Invitado</span>
+            }
+            - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

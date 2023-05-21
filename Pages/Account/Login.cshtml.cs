@@ -14,6 +14,7 @@ namespace RostrosFelices.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+
         public LoginModel(ApplicationDbContext context)
         {
             _context = context;
@@ -21,6 +22,7 @@ namespace RostrosFelices.Pages.Account
 
         [BindProperty]
         public LoginInputModel Input { get; set; }
+
         public class LoginInputModel
         {
             [Required(ErrorMessage = "El campo Correo Electrónico es requerido.")]
@@ -32,8 +34,8 @@ namespace RostrosFelices.Pages.Account
             public string Password { get; set; }
         }
 
-        public IActionResult OnGet() 
-        { 
+        public IActionResult OnGet()
+        {
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToPage("/Index");
@@ -47,15 +49,23 @@ namespace RostrosFelices.Pages.Account
             {
                 return Page();
             }
+
             var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.CorreoElectronico == Input.Email && u.Contraseña == Input.Password);
 
             if (user != null || (Input.Email == "admin@rostrosfelices.com.co" && Input.Password == "admingpt"))
             {
-                var claims = new[]
+                var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user?.Id.ToString() ?? "admin")
+            };
+                if (user != null)
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user?.Id.ToString() ?? "admin"),
-                    new Claim(ClaimTypes.Email, user?.CorreoElectronico ?? "admin@rostrosfelices.com.co")
-                };
+                    claims.Add(new Claim(ClaimTypes.Email, user.CorreoElectronico));
+                }
+                else
+                {
+                    claims.Add(new Claim(ClaimTypes.Email, "admin@rostrosfelices.com.co"));
+                }
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
