@@ -23,8 +23,31 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Cliente/Index">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Servicio/Index">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/HistorialServicios/Index">Historial de Servicios</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <ul class="navbar-nav">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Account/Login">Iniciar sesión</a>
+                                </li>
+                            }
+                            @if (User.Identity.Name == "admin" && User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Usuarios/CrearUsuario">Crear Usuario</a>
+                                </li>
+                            }
+                        </ul>
                     </ul>
                 </div>
             </div>
