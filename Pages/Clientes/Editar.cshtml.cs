@@ -36,7 +36,7 @@ namespace RostrosFelices.Pages.Clientes
                 return Page();
             }
 
-            _context.Attach(Cliente).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Update(Cliente);
             _context.SaveChanges();
 
             return RedirectToPage("./Index");

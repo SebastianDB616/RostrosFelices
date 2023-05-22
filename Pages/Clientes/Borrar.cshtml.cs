@@ -36,10 +36,17 @@ namespace RostrosFelices.Pages.Clientes
                 return Page();
             }
 
-            _context.Clientes.Remove(Cliente);
-            _context.SaveChanges();
+            var cliente = _context.Clientes.Find(Cliente.Id);
 
-            return RedirectToPage("./Index");
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+
+            _context.Clientes.Remove(cliente); // Eliminar el cliente
+            _context.SaveChanges(); // Guardar los cambios en la base de datos
+
+            return RedirectToPage("./Index"); // Redirigir a la página de índice
         }
     }
 }

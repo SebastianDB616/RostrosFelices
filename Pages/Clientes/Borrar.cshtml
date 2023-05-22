@@ -6,8 +6,6 @@
 
 <h2>Borrar Cliente</h2>
 
-<h3>¿Estás seguro de que deseas borrar el siguiente cliente?</h3>
-
 <div>
     <h4>Cliente</h4>
     <hr />
@@ -26,9 +24,7 @@
     </dl>
 </div>
 
-<form method="post">
-    <input type="hidden" asp-for="Cliente.Id" />
-
-    <button type="submit" class="btn btn-danger">Borrar</button>
-    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
-</form>
+@{
+    Model.OnPost(); // Llamar al método OnPost para eliminar el cliente directamente
+    Response.Redirect("./Index"); // Redirigir a la página de índice
+}
