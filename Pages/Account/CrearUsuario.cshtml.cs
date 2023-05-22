@@ -1,48 +1,48 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using RostrosFelices.Data;
-using RostrosFelices.Models;
-using System.Threading.Tasks;
+//using Microsoft.AspNetCore.Authorization;
+//using Microsoft.AspNetCore.Mvc;
+//using Microsoft.AspNetCore.Mvc.RazorPages;
+//using RostrosFelices.Data;
+//using RostrosFelices.Models;
+//using System.Threading.Tasks;
 
-namespace RostrosFelices.Pages.Account
-{
-    [Authorize]
-    public class CreateUsuarioModel : PageModel
-    {
-        private readonly ApplicationDbContext _context;
+//namespace RostrosFelices.Pages.Account
+//{
+//    [Authorize]
+//    public class CreateUsuarioModel : PageModel
+//    {
+//        private readonly ApplicationDbContext _context;
 
-        public CreateUsuarioModel(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+//        public CreateUsuarioModel(ApplicationDbContext context)
+//        {
+//            _context = context;
+//        }
 
-        public IActionResult OnGet()
-        {
-            if (!User.Identity.IsAuthenticated || User.Identity.Name != "admin@rostrosfelices.com.co")
-            {
-                return RedirectToPage("/Index");
-            }
+//        public IActionResult OnGet()
+//        {
+//            if (!User.Identity.IsAuthenticated || User.Identity.Name != "admin@rostrosfelices.com.co")
+//            {
+//                return RedirectToPage("/Index");
+//            }
 
-            return Page();
-        }
+//            return Page();
+//        }
 
-        [BindProperty]
-        public Usuario Usuario { get; set; }
+//        [BindProperty]
+//        public Usuario Usuario { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+//        public async Task<IActionResult> OnPostAsync()
+//        {
+//            if (!ModelState.IsValid)
+//            {
+//                return Page();
+//            }
 
-            // Crear el usuario en la base de datos
+//            // Crear el usuario en la base de datos
 
-            _context.Usuarios.Add(Usuario);
-            await _context.SaveChangesAsync();
+//            _context.Usuarios.Add(Usuario);
+//            await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
-        }
-    }
-}
+//            return RedirectToPage("./Index");
+//        }
+//    }
+//}

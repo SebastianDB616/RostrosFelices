@@ -1,0 +1,59 @@
+﻿@page
+@model RostrosFelices.Pages.Usuarios.CrearModel
+@{
+    ViewData["Title"] = "Crear Usuario";
+}
+
+<h2>Crear Usuario</h2>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="NombreCompleto"></label>
+        <input asp-for="NombreCompleto" class="form-control" />
+        <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CorreoElectronico"></label>
+        <input asp-for="CorreoElectronico" class="form-control" />
+        <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TipoSangre"></label>
+        <input asp-for="TipoSangre" class="form-control" />
+        <span asp-validation-for="TipoSangre" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CedulaCiudadania"></label>
+        <input asp-for="CedulaCiudadania" class="form-control" />
+        <span asp-validation-for="CedulaCiudadania" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NumeroTelefonico"></label>
+        <input asp-for="NumeroTelefonico" class="form-control" />
+        <span asp-validation-for="NumeroTelefonico" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Contraseña"></label>
+        <input asp-for="Contraseña" type="password" class="form-control" />
+        <span asp-validation-for="Contraseña" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConfirmarContraseña"></label>
+        <input asp-for="ConfirmarContraseña" type="password" class="form-control" />
+        <span asp-validation-for="ConfirmarContraseña" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear</button>
+</form>
+
+<div>
+    <a asp-page="Index">Volver al listado</a>
+</div>

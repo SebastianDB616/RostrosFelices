@@ -1,0 +1,56 @@
+﻿@page
+@model RostrosFelices.Pages.Usuarios.BorrarModel
+@{
+    ViewData["Title"] = "Borrar Usuario";
+}
+
+<h2>Borrar Usuario</h2>
+
+<form method="post">
+    <div class="alert alert-danger">
+        ¿Está seguro de que desea eliminar este usuario?
+    </div>
+
+    <input type="hidden" asp-for="Usuario.Id" />
+
+    <div class="form-group">
+        <label asp-for="Usuario.NombreCompleto"></label>
+        <input asp-for="Usuario.NombreCompleto" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Usuario.Contraseña"></label>
+        <input asp-for="Usuario.Contraseña" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Usuario.ConfirmarContraseña"></label>
+        <input asp-for="Usuario.ConfirmarContraseña" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Usuario.TipoSangre"></label>
+        <input asp-for="Usuario.TipoSangre" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Usuario.CedulaCiudadania"></label>
+        <input asp-for="Usuario.CedulaCiudadania" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Usuario.NumeroTelefonico"></label>
+        <input asp-for="Usuario.NumeroTelefonico" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Usuario.CorreoElectronico"></label>
+        <input asp-for="Usuario.CorreoElectronico" class="form-control" disabled />
+    </div>
+
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+</form>
+
+<div>
+    <a asp-page="Index">Volver al listado</a>
+</div>

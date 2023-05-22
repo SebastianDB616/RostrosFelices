@@ -73,7 +73,16 @@
             &copy; 2023 - RostrosFelices (Realizado por: Sebastián Dorado Botero - S4AN)
             @if (User.Identity.IsAuthenticated)
             {
-                <span>- @User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value</span>
+                var userEmail = User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
+                if (userEmail == "admin@rostrosfelices.com.co")
+                {
+                    <span>- @userEmail -</span>
+                    <a asp-area="" asp-page="/Usuarios/Index">Crear Usuario</a>
+                }
+                else
+                {
+                    <span>- Estás autenticado como invitado</span>
+                }
             }
             else
             {
