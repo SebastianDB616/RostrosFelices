@@ -53,6 +53,35 @@ namespace RostrosFelices.Pages.Usuarios
                 return Page();
             }
 
+            // Verificar si el correo electrónico ya está en uso
+            if (_context.Usuarios.Any(u => u.NombreCompleto == NombreCompleto))
+            {
+                ModelState.AddModelError("NombreCompleto", "El nombre completo ya está en uso");
+                return Page();
+            }
+
+            // Verificar si el nombre completo ya está en uso
+            if (_context.Usuarios.Any(u => u.CorreoElectronico == CorreoElectronico))
+            {
+                ModelState.AddModelError("CorreoElectronico", "El correo electrónico ya está en uso");
+                return Page();
+            }
+
+            // Verificar si la cédula de ciudadanía ya está en uso
+            if (_context.Usuarios.Any(u => u.CedulaCiudadania == CedulaCiudadania))
+            {
+                ModelState.AddModelError("CedulaCiudadania", "La cédula de ciudadanía ya está en uso");
+                return Page();
+            }
+
+            // Verificar si el número telefónico ya está en uso
+            if (_context.Usuarios.Any(u => u.NumeroTelefonico == NumeroTelefonico))
+            {
+                ModelState.AddModelError("NumeroTelefonico", "El número telefónico ya está en uso");
+                return Page();
+            }
+
+
             // Lógica para crear el nuevo usuario en la base de datos
             var usuario = new Usuario
             {
