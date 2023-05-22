@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using RostrosFelices.Data;
 using RostrosFelices.Models;
 
@@ -17,11 +17,11 @@ namespace RostrosFelices.Pages.Servicios
             _context = context;
         }
 
-        public IList<Servicio> Servicios { get; set; }
+        public List<Servicio> Servicios { get; set; }
 
         public void OnGet()
         {
-            Servicios = _context.Servicios.ToList();
+            Servicios = _context.Servicios.Include("Cliente").ToList();
         }
     }
 }

@@ -11,25 +11,25 @@
 
     <input type="hidden" asp-for="Servicio.Id" />
 
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label asp-for="Servicio.FechaServicio"></label>
         <input asp-for="Servicio.FechaServicio" class="form-control" />
         <span asp-validation-for="Servicio.FechaServicio" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label asp-for="Servicio.DescripcionServicio"></label>
         <input asp-for="Servicio.DescripcionServicio" class="form-control" />
         <span asp-validation-for="Servicio.DescripcionServicio" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label asp-for="Servicio.NombreEmpleado"></label>
         <input asp-for="Servicio.NombreEmpleado" class="form-control" />
         <span asp-validation-for="Servicio.NombreEmpleado" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label asp-for="Servicio.ClienteId"></label>
         <select asp-for="Servicio.ClienteId" asp-items="ViewBag.Clientes" class="form-control"></select>
         <span asp-validation-for="Servicio.ClienteId" class="text-danger"></span>

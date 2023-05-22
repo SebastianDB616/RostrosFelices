@@ -19,6 +19,7 @@ namespace RostrosFelices.Pages.Servicios
         public IActionResult OnGet()
         {
             ViewData["Clientes"] = new SelectList(_context.Clientes.ToList(), "Id", "NombreCompleto");
+            ViewData["Usuarios"] = new SelectList(_context.Usuarios.ToList(), "Id", "NombreCompleto");
             return Page();
         }
 
@@ -30,13 +31,14 @@ namespace RostrosFelices.Pages.Servicios
             if (!ModelState.IsValid)
             {
                 ViewData["Clientes"] = new SelectList(_context.Clientes.ToList(), "Id", "NombreCompleto");
+                ViewData["Usuarios"] = new SelectList(_context.Usuarios.ToList(), "Id", "NombreCompleto");
                 return Page();
             }
 
-            _context.Update(Servicio);
+            _context.Servicios.Add(Servicio);
             _context.SaveChanges();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Servicios/Index");
         }
     }
 }
