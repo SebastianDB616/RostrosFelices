@@ -19,8 +19,8 @@ namespace RostrosFelices.Models
             public string NombreEmpleado { get; set; }
 
             [Required]
-            public int ClientId { get; set; }
-
             public int ClienteId { get; set; }
+
+            public Cliente Cliente { get; set; }
     }
 }

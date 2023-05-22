@@ -1,4 +1,46 @@
 ﻿@page
 @model RostrosFelices.Pages.Servicios.IndexModel
 @{
+    ViewData["Title"] = "Lista de Servicios";
+}
+
+<h2>Lista de Servicios</h2>
+
+<p>
+    <a asp-page="Crear" class="btn btn-success">Crear nuevo servicio</a>
+</p>
+
+@if (Model.Servicios.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha del Servicio</th>
+                <th>Descripción</th>
+                <th>Nombre del Empleado</th>
+                <th>Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var servicio in Model.Servicios)
+            {
+                <tr>
+                    <td>@servicio.FechaServicio</td>
+                    <td>@servicio.DescripcionServicio</td>
+                    <td>@servicio.NombreEmpleado</td>
+                    <td>@servicio.Cliente.NombreCompleto</td>
+                    <td>@(servicio.Cliente != null ? servicio.Cliente.NombreCompleto : "")</td>
+                    <td>
+                        <a asp-page="Editar" asp-route-id="@servicio.Id" class="btn btn-primary btn-sm">Editar</a>
+                        <a asp-page="Borrar" asp-route-id="@servicio.Id" class="btn btn-danger btn-sm">Borrar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se encontraron servicios.</p>
 }
