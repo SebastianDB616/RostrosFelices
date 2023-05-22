@@ -33,7 +33,7 @@ namespace RostrosFelices.Pages.Servicios
                 return Page();
             }
 
-            _context.Servicios.Add(Servicio);
+            _context.Update(Servicio);
             _context.SaveChanges();
 
             return RedirectToPage("./Index");
