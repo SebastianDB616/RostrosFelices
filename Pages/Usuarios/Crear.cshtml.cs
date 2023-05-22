@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RostrosFelices.Data;
 using RostrosFelices.Models;
 
@@ -29,10 +30,10 @@ namespace RostrosFelices.Pages.Usuarios
         [BindProperty]
         public string NumeroTelefonico { get; set; }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public string Contraseña { get; set; }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public string ConfirmarContraseña { get; set; }
 
         public IActionResult OnGet()
@@ -44,6 +45,8 @@ namespace RostrosFelices.Pages.Usuarios
         {
             if (!ModelState.IsValid)
             {
+                Contraseña = string.Empty;
+                ConfirmarContraseña = string.Empty;
                 return Page();
             }
 
@@ -81,6 +84,12 @@ namespace RostrosFelices.Pages.Usuarios
                 return Page();
             }
 
+            // Verificar si el correo electrónico es "admin"
+            if (CorreoElectronico == "admin@rostrosfelices.com.co")
+            {
+                ModelState.AddModelError("CorreoElectronico", "No está permitido utilizar este correo electrónico");
+                return Page();
+            }
 
             // Lógica para crear el nuevo usuario en la base de datos
             var usuario = new Usuario
