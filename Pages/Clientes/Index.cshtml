@@ -1,4 +1,38 @@
 ﻿@page
 @model RostrosFelices.Pages.Clientes.IndexModel
 @{
+    ViewData["Title"] = "Lista de Clientes";
 }
+
+<h2>Lista de Clientes</h2>
+
+<p>
+    <a asp-page="Create">Crear Nuevo Cliente</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre Completo</th>
+            <th>Correo Electrónico</th>
+            <th>Teléfono</th>
+            <th>Cédula de Ciudadanía</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model.Clientes)
+        {
+            <tr>
+                <td>@cliente.NombreCompleto</td>
+                <td>@cliente.CorreoElectronico</td>
+                <td>@cliente.NumeroTelefonico</td>
+                <td>@cliente.CedulaCiudadania</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@cliente.Id">Editar</a> |
+                    <a asp-page="./Delete" asp-route-id="@cliente.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

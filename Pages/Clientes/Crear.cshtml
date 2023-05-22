@@ -1,4 +1,38 @@
 ﻿@page
 @model RostrosFelices.Pages.Clientes.CrearModel
 @{
+    ViewData["Title"] = "Crear Cliente";
 }
+
+<h2>Crear Cliente</h2>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Cliente.NombreCompleto"></label>
+        <input asp-for="Cliente.NombreCompleto" class="form-control" />
+        <span asp-validation-for="Cliente.NombreCompleto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cliente.CorreoElectronico"></label>
+        <input asp-for="Cliente.CorreoElectronico" class="form-control" />
+        <span asp-validation-for="Cliente.CorreoElectronico" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cliente.NumeroTelefonico"></label>
+        <input asp-for="Cliente.NumeroTelefonico" class="form-control" />
+        <span asp-validation-for="Cliente.NumeroTelefonico" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cliente.CedulaCiudadania"></label>
+        <input asp-for="Cliente.CedulaCiudadania" class="form-control" />
+        <span asp-validation-for="Cliente.CedulaCiudadania" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear</button>
+    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+</form>
